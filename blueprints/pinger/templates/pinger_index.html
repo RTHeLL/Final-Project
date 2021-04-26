@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if addr_response %}
+                    <div class="alert alert-success" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <form action="{{ url_for('pinger.pinger_handler') }}" method="POST">
+            <div class="cp_login">
+                <div class="form-group">
+                    <label>Введите адрес:</label>
+                    <input type="text" class="form-control" name="address">
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-outline-secondary">Проверить</button>
+                </div>
+            </div>
+        </form>
+    {% endwith %}
+{% endblock %}
