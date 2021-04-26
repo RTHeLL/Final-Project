@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
+{% block title %} Pinger {% endblock %}
+
 {% block content %}
     {% with messages = get_flashed_messages() %}
+        <h2>Вы зашли на страницу пингера!</h2>
+        <p class="lead">Здесь вы можете проверить состояние необходимого сервера.
+            Для проверки введите IP-адрес или Домен в поле ниже и нажмите 'Проверить'</p>
+        <br>
+
         {% if messages %}
             {% for message in messages %}
                 {% if addr_response %}
@@ -15,6 +22,7 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+
         <form action="{{ url_for('pinger.pinger_handler') }}" method="POST">
             <div class="cp_login">
                 <div class="form-group">
