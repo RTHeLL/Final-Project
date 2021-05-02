@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %} Pinger {% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        <h2>Вы зашли на страницу генератора резюме!</h2>
+        <p class="lead">Здесь вы можете сгенерировать свою рюземе из исходных данных.
+            Для этого заполните все поля и нажмите на кнопку 'Сгенерировать'</p>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if all_done %}
+                    <div class="alert alert-success" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+{#        <form action="{{ url_for('cv_generator.cv_generator_handler') }}" method="POST">#}
+{#            <div class="cp_login">#}
+{#                <div class="form-group">#}
+{#                    <label>Введите адрес:</label>#}
+{#                    <input type="text" class="form-control" name="address">#}
+{#                </div>#}
+{#                <br>#}
+{#                <div class="form-group">#}
+{#                    <button class="btn btn-outline-secondary">Сгенерировать</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </form>#}
+
+        <form action="{{ url_for('cv_generator.cv_generator_handler') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Загрузите свое фото</label>
+                <input type="file" class="form-control" name="photo" required>
+                <br>
+                <label>Введите имя и фамилию:</label>
+                <input type="text" class="form-control" name="cv_fullname" required>
+                <br>
+                <label>Введите несколько дополнительных источников информации о Вас:</label>
+                <div class="row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                    <label>
+                        Никнейм
+                        <input type="text" class="form-control" name="cv_social_name_1">
+                        <hr>
+                        <input type="text" class="form-control" name="cv_social_name_2">
+                    </label>
+                    <label>
+                        Ссылка
+                        <input type="text" class="form-control" name="cv_social_link_1">
+                        <hr>
+                        <input type="text" class="form-control" name="cv_social_link_2">
+                    </label>
+                </div>
+                <br>
+                <label>Напишите свою биографию:</label>
+                <input type="text" class="form-control" name="cv_bio" required>
+                <br>
+                <label>Введите данные о нескольких своих проектах:</label>
+                <div class="row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                    <label>
+                        Название
+                        <input type="text" class="form-control" name="cv_project_name_1">
+                        <hr>
+                        <input type="text" class="form-control" name="cv_project_name_2">
+                    </label>
+                    <label>
+                        Ссылка
+                        <input type="text" class="form-control" name="cv_project_link_1">
+                        <hr>
+                        <input type="text" class="form-control" name="cv_project_link_2">
+                    </label>
+                    <label>
+                        Описание
+                        <input type="text" class="form-control" name="cv_project_desc_1">
+                        <hr>
+                        <input type="text" class="form-control" name="cv_project_desc_2">
+                    </label>
+                </div>
+                <br>
+                <button class="btn btn-outline-secondary">Сгенерировать</button>
+            </div>
+
+{#            <label id="projectLabel">Stuff done:</label>#}
+{#            <div id="projects"></div>#}
+{#            <div id="projectHideout" style="display: none;">#}
+{#                <label>Введите Ваш проект:</label>#}
+{#                <input type="text" class="form-control" name="cv_project">#}
+{#            </div>#}
+        </form>
+
+    {% endwith %}
+{% endblock %}

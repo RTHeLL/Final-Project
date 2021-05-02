@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ dict_info['cv_fullname'] }}'s CV</title>
+
+    <script src="/static/js/cv_generate.js"></script>
+
+    <link rel="stylesheet" href="/static/css/cv_generate/cv_style.css">
+</head>
+
+<body style="background-color: #a2dbff;">
+<br>
+<div class="block fixed" style="position:relative;
+    z-index: 1;
+    height: 100%;
+    min-width: 50px;
+    max-width: 1000px;
+    margin: 0 auto;">
+    <h1 id="titleText" class="title" style="text-align:center">{{ dict_info['cv_fullname'] }} CV</h1>
+    <br>
+    <form style="margin-left:10%; margin-right:10%">
+        <div class="row">
+            <div>
+                <label>Full Name:</label>
+                <h4 id="name" style="margin-top: 10px;">{{ dict_info['cv_fullname'] }}</h4>
+            </div>
+
+            <div>
+                <img src="{{ url_for('static', filename=dict_info['cv_photo']) }}" height="160px" width="180px" alt="">
+            </div>
+
+            <div>
+                <label id="socialLabel">More info:</label>
+                <div id="socials" class="col"></div>
+                <div id="socialHideout" style="display: none;">
+                    {{ dict_info['cv_social'] }}
+                </div>
+                <br>
+            </div>
+        </div>
+
+
+            <br>
+            <br>
+        <label>Bio:</label>
+        <h4 id="bio" style="margin-top: 10px;">
+              <span style="word-wrap: break-word;">
+                {{ dict_info['cv_bio'] }}
+              </span>
+        </h4>
+
+        <label id="projectLabel">Stuff done:</label>
+        <div id="projects"></div>
+        <div id="projectHideout" style="display: none;">
+            {{ dict_info['cv_projects'] }}
+        </div>
+        <br>
+    </form>
+</div>
+</body>
+</html>
